@@ -1,0 +1,102 @@
+﻿body { min-height: 100vh; }
+
+.page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 36px 0;
+}
+
+.hero-panel { width: 100%; }
+
+.planner {
+    width: min(900px, 92vw);
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(8, 18, 31, 0.72);
+    backdrop-filter: blur(8px);
+    color: #f2f7ff;
+}
+
+.planner h1 {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+}
+
+.planner p {
+    margin: 10px 0 24px;
+    color: rgba(240, 246, 255, 0.88);
+}
+
+.travel-form { display: grid; gap: 14px; }
+.field-group { display: grid; gap: 8px; }
+.field-group > label { font-weight: 700; }
+
+.choice-row,
+.checks-grid,
+.date-range,
+.choice-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.checks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.date-range { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.choice-row label,
+.checks-grid label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+input[type="month"],
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    min-height: 46px;
+    border-radius: 12px;
+    border: 1px solid rgba(202, 220, 240, 0.45);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 10px 12px;
+}
+
+input::placeholder { color: rgba(229, 238, 249, 0.8); }
+input[type="month"], input[type="date"] { color-scheme: dark; }
+
+.error-text {
+    display: none;
+    margin: 0;
+    color: #ffd5dd;
+    background: rgba(150, 30, 56, 0.42);
+    border: 1px solid rgba(255, 164, 183, 0.6);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.error-text.visible { display: block; }
+.success-text { margin: 2px 0 0; min-height: 18px; }
+.hidden { display: none; }
+
+.primary-btn { margin-top: 8px; padding: 13px 20px; font-size: 14px; }
+
+@media (max-width: 760px) {
+    .planner { padding: 22px; }
+    .checks-grid,
+    .date-range { grid-template-columns: 1fr; }
+}

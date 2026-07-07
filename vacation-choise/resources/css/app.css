@@ -1,0 +1,194 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+    --bg: #f4f7fb;
+    --ink: #12263a;
+    --muted: #5c7085;
+    --primary: #1c7ed6;
+    --primary-dark: #155c9d;
+    --success: #1f9d55;
+    --card: #ffffff;
+    --line: #dce5f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Manrope', 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+.shell {
+    width: min(1160px, 92vw);
+    margin: 0 auto;
+}
+
+.topbar {
+    padding-top: 20px;
+}
+
+.topbar-inner {
+    min-height: 68px;
+    border-radius: 16px;
+    padding: 0 24px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(7, 19, 35, 0.55);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    font-weight: 800;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.menu-item {
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    font-weight: 700;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.menu-item.active {
+    border-bottom-color: #7cc7ff;
+}
+
+.ghost-btn {
+    border: 1px solid rgba(130, 196, 255, 0.72);
+    border-radius: 999px;
+    padding: 9px 16px;
+    color: #d6ecff;
+    background: transparent;
+    font-weight: 700;
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.active-header-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.primary-btn {
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), #2f9af0);
+    color: #fff;
+    font-weight: 800;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.results-page {
+    background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%);
+}
+
+.results-hero {
+    min-height: 340px;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 28px;
+}
+
+.results-hero-content {
+    padding-top: 36px;
+    color: #f4f8ff;
+}
+
+.results-hero-content h1 {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 800;
+}
+
+.results-hero-content p {
+    margin: 12px 0 0;
+    color: rgba(244, 248, 255, 0.92);
+    font-size: 18px;
+}
+
+.results-main {
+    margin-top: -28px;
+    padding-bottom: 36px;
+}
+
+.destination-info-box,
+.results-column,
+.filters-card,
+.destination-main-card,
+.compare-table-wrap,
+.stats-counter-card {
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    box-shadow: 0 10px 32px rgba(15, 35, 57, 0.07);
+}
+
+.muted { color: #73879c; }
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.destination-list-card {
+    border: 1px solid #dce6f2;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 10px 28px rgba(15, 35, 57, 0.08);
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.destination-list-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(15, 35, 57, 0.14);
+}
+
+.destination-list-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.destination-list-body { padding: 12px; }
+
+.destination-list-body h3 {
+    margin: 0;
+    color: #102a43;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+}
+
+.destination-list-body p {
+    margin: 6px 0 0;
+    color: #4e657c;
+}
+
+@media (max-width: 960px) {
+    .topbar-inner { padding: 0 14px; }
+    .menu { gap: 16px; }
+}

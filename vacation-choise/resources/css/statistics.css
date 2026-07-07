@@ -1,0 +1,95 @@
+﻿.stats-layout { display: grid; }
+.results-column { padding: 16px; display: grid; gap: 14px; }
+
+.stats-counters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.stats-counter-card {
+    padding: 16px;
+    background: linear-gradient(145deg, #0f395e, #1a5d91);
+    color: #f4f9ff;
+    border: none;
+}
+
+.stats-counter-card h3 { margin: 0; font-size: 14px; font-weight: 700; opacity: 0.9; }
+.stats-counter-card p {
+    margin: 6px 0 0;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.destination-info-box { padding: 16px; }
+.destination-info-box h2 {
+    margin: 0 0 10px;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    color: #163855;
+}
+
+.bars-grid { display: grid; gap: 10px; }
+.bar-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 44px;
+    gap: 10px;
+    align-items: center;
+}
+
+.bar-label { color: #36536f; font-weight: 700; font-size: 13px; }
+.bar-track {
+    height: 11px;
+    background: #e7eff9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    display: block;
+    background: linear-gradient(90deg, #2f86d7, #6fbcff);
+    border-radius: 999px;
+}
+
+.bar-value { font-weight: 800; color: #234766; }
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 11px;
+    border-bottom: 1px solid #e6edf6;
+    text-align: left;
+}
+
+.stats-table th { background: #f3f8fd; }
+.stats-table th a { color: #13497b; text-decoration: none; font-weight: 800; }
+.stats-table td { color: #314f69; }
+
+.stats-subtitle {
+    margin: 14px 0 8px;
+    color: #35597b;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.stats-chart-wrap {
+    position: relative;
+    height: 290px;
+    border: 1px solid #dfe8f3;
+    border-radius: 12px;
+    padding: 10px;
+    background: #fbfdff;
+}
+
+@media (max-width: 760px) {
+    .stats-counters { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 1fr; }
+}
