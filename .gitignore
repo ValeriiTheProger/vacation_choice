@@ -1,6 +1,6 @@
 *.log
 .DS_Store
-.env
+vacation-choise/.env
 .env.backup
 .env.production
 .phpactor.json
