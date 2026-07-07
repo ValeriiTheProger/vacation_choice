@@ -4,7 +4,7 @@ services:
     container_name: vacation-choice-mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: vacation_choise
+      MYSQL_DATABASE: vacation_choice
       MYSQL_USER: vacation_user
       MYSQL_PASSWORD: vacation_pass
       MYSQL_ROOT_PASSWORD: root_pass

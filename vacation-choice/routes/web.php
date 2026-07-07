@@ -4,7 +4,7 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('vacation-choise')->group(function () {
+Route::prefix('vacation-choice')->group(function () {
     Route::get('/', [DestinationController::class, 'index'])->name('home');
 
     Route::get('/search/results', [DestinationController::class, 'search'])->name('search.results');
