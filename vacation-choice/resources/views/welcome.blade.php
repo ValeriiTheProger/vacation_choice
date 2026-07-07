@@ -56,11 +56,9 @@
                     <div class="field-group">
                         <label>Čo hľadáš? (môžeš vybrať viac možností)</label>
                         <div class="checks-grid">
-                            <label><input type="checkbox" name="holiday_type[]" value="more-a-plaz"> More a pláž</label>
-                            <label><input type="checkbox" name="holiday_type[]" value="hory-a-priroda"> Hory a príroda</label>
-                            <label><input type="checkbox" name="holiday_type[]" value="historicke-mesta"> Historické mestá</label>
-                            <label><input type="checkbox" name="holiday_type[]" value="mestsky-vylet"> Mestský výlet</label>
-                            <label><input type="checkbox" name="holiday_type[]" value="aktivity-a-dobrodruzstvo"> Aktivity a dobrodružstvo</label>
+                            @foreach($filterOptions['holiday_types'] as $value => $label)
+                                <label><input type="checkbox" name="holiday_type[]" value="{{ $value }}"> {{ $label }}</label>
+                            @endforeach
                         </div>
                         <p class="error-text" data-error-for="holiday_type"></p>
                     </div>
@@ -69,10 +67,9 @@
                         <label for="tempPreference">Preferovaná teplota</label>
                         <select id="tempPreference" name="temperature">
                             <option value="">Vyber možnosť</option>
-                            <option value="horuco">Horúco (30 °C+)</option>
-                            <option value="teplo">Teplo (20-29 °C)</option>
-                            <option value="prijemne">Príjemne (10-19 °C)</option>
-                            <option value="jedno">Jedno mi to</option>
+                            @foreach($filterOptions['temperature'] as $value => $label)
+                                <option value="{{ $value }}">{{ $label }}</option>
+                            @endforeach
                         </select>
                         <p class="error-text" data-error-for="temperature"></p>
                     </div>
@@ -80,9 +77,9 @@
                     <div class="field-group">
                         <label>Vzdialenosť z Viedne</label>
                         <div class="choice-row">
-                            <label><input type="radio" name="distance" value="do-3h"> Do 3 hodín letu</label>
-                            <label><input type="radio" name="distance" value="do-5h"> Do 5 hodín letu</label>
-                            <label><input type="radio" name="distance" value="kdekolvek"> Kdekoľvek</label>
+                            @foreach($filterOptions['distance'] as $value => $label)
+                                <label><input type="radio" name="distance" value="{{ $value }}"> {{ $label }}</label>
+                            @endforeach
                         </div>
                         <p class="error-text" data-error-for="distance"></p>
                     </div>

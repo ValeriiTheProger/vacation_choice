@@ -14,7 +14,13 @@ class DestinationController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view('welcome', [
+            'filterOptions' => [
+                'holiday_types' => array_map(fn (array $type) => $type['label'], config('vacation.holiday_types')),
+                'temperature' => array_map(fn (array $type) => $type['label'], config('vacation.temperatures')),
+                'distance' => array_map(fn (array $type) => $type['label'], config('vacation.distances')),
+            ],
+        ]);
     }
 
     public function all()
@@ -32,6 +38,10 @@ class DestinationController extends Controller
 
     public function search(Request $request, DestinationRecommendationService $service)
     {
+        $holidayTypes = config('vacation.holiday_types');
+        $temperatures = config('vacation.temperatures');
+        $distances = config('vacation.distances');
+
         $input = $request->validate([
             'travel_mode' => ['nullable', 'in:month,range'],
             'travel_month' => ['nullable', 'date_format:Y-m'],
@@ -40,30 +50,9 @@ class DestinationController extends Controller
             'duration_days' => ['required', 'integer', 'min:1', 'max:60'],
             'holiday_type' => ['nullable', 'array'],
             'holiday_type.*' => ['string'],
-            'temperature' => ['required', 'in:horuco,teplo,prijemne,jedno'],
-            'distance' => ['required', 'in:do-3h,do-5h,kdekolvek'],
+            'temperature' => ['required', 'in:'.implode(',', array_keys($temperatures))],
+            'distance' => ['required', 'in:'.implode(',', array_keys($distances))],
         ]);
-
-        $typeMap = [
-            'more-a-plaz' => 'beach',
-            'hory-a-priroda' => 'nature',
-            'historicke-mesta' => 'history',
-            'mestsky-vylet' => 'city',
-            'aktivity-a-dobrodruzstvo' => 'adventure',
-        ];
-
-        $temperatureMap = [
-            'horuco' => 'hot',
-            'teplo' => 'warm',
-            'prijemne' => 'mild',
-            'jedno' => 'any',
-        ];
-
-        $distanceMap = [
-            'do-3h' => '3h',
-            'do-5h' => '5h',
-            'kdekolvek' => 'any',
-        ];
 
         $month = (int) now()->month;
         if (!empty($input['travel_month'])) {
@@ -74,11 +63,11 @@ class DestinationController extends Controller
             'month' => $month,
             'days' => (int) $input['duration_days'],
             'types' => array_values(array_filter(array_map(
-                fn (string $value) => $typeMap[$value] ?? null,
+                fn (string $value) => $holidayTypes[$value]['code'] ?? null,
                 $input['holiday_type'] ?? []
             ))),
-            'temperature' => $temperatureMap[$input['temperature']],
-            'distance' => $distanceMap[$input['distance']],
+            'temperature' => $temperatures[$input['temperature']]['code'],
+            'distance' => $distances[$input['distance']]['code'],
         ];
 
         $results = $service->recommend($serviceFilters);
@@ -113,24 +102,9 @@ class DestinationController extends Controller
         ];
 
         $filterOptions = [
-            'holiday_types' => [
-                'more-a-plaz' => 'More a pláž',
-                'hory-a-priroda' => 'Hory a príroda',
-                'historicke-mesta' => 'Historické mestá',
-                'mestsky-vylet' => 'Mestský výlet',
-                'aktivity-a-dobrodruzstvo' => 'Aktivity a dobrodružstvo',
-            ],
-            'temperature' => [
-                'horuco' => 'Horúco (30 °C+)',
-                'teplo' => 'Teplo (20-29 °C)',
-                'prijemne' => 'Príjemne (10-19 °C)',
-                'jedno' => 'Jedno mi to',
-            ],
-            'distance' => [
-                'do-3h' => 'Do 3 hodín letu',
-                'do-5h' => 'Do 5 hodín letu',
-                'kdekolvek' => 'Kdekoľvek',
-            ],
+            'holiday_types' => array_map(fn (array $type) => $type['label'], $holidayTypes),
+            'temperature' => array_map(fn (array $type) => $type['label'], $temperatures),
+            'distance' => array_map(fn (array $type) => $type['label'], $distances),
         ];
 
         return view('search-results', [

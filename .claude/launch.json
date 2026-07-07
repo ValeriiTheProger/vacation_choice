@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "laravel-serve",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "cd /d vacation-choice && C:\\phpKit\\php.exe artisan serve"],
+      "port": 8000
+    }
+  ]
+}

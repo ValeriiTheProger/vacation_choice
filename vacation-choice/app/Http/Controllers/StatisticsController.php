@@ -50,25 +50,14 @@ class StatisticsController extends Controller
             ->pluck('total', 'temperature_preference')
             ->all();
 
-        $temperatureMap = [
-            'horuco' => 'Horúco (30 °C+)',
-            'teplo' => 'Teplo (20-29 °C)',
-            'prijemne' => 'Príjemne (10-19 °C)',
-            'jedno' => 'Jedno mi to',
-        ];
+        $temperatureMap = array_map(fn (array $type) => $type['label'], config('vacation.temperatures'));
 
         $temperatureCounts = [];
         foreach ($temperatureMap as $key => $label) {
             $temperatureCounts[$label] = (int) ($temperatureRaw[$key] ?? 0);
         }
 
-        $typeMap = [
-            'more-a-plaz' => 'More a pláž',
-            'hory-a-priroda' => 'Hory a príroda',
-            'historicke-mesta' => 'Historické mestá',
-            'mestsky-vylet' => 'Mestský výlet',
-            'aktivity-a-dobrodruzstvo' => 'Aktivity a dobrodružstvo',
-        ];
+        $typeMap = array_map(fn (array $type) => $type['label'], config('vacation.holiday_types'));
 
         $typeCountsRaw = array_fill_keys(array_keys($typeMap), 0);
         foreach (SearchLog::select('vacation_types')->get() as $log) {
