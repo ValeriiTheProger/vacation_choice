@@ -107,7 +107,7 @@ class StatisticsController extends Controller
             $ip = $log->ip_hash;
             $current = $log->visited_at;
 
-            if (!isset($lastVisitByIp[$ip]) || $current->diffInMinutes($lastVisitByIp[$ip]) > 60) {
+            if (!isset($lastVisitByIp[$ip]) || $current->diffInMinutes($lastVisitByIp[$ip], absolute: true) > 60) {
                 $unique++;
             }
 
